@@ -1,8 +1,9 @@
 from django.urls import path, include
 from . import views
-from .views import dashboard, StallDetailView
+from .views import StallListView, StallDetailView
 
 urlpatterns = [
 path('', views.home, name='boimelaApp-home'),
+path('dashboard/', StallListView.as_view(), name='dashboard'),
 path('stall/<int:pk>/', StallDetailView.as_view(), name='stall-detail')
 ]
