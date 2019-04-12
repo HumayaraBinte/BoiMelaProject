@@ -1,17 +1,18 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 # Create your models here.
 
 class Stall(models.Model):
-    BOOK = 'BK'
-    FOOD = 'FD'
+    BOOK = 'Book'
+    FOOD = 'Food'
     STALL_TYPES = (
         (BOOK, 'Book'),
         (FOOD, 'Food'),
     )
     stall_name= models.CharField(max_length=100)
     owner= models.ForeignKey(User, on_delete=models.CASCADE)
-    stall_type= models.CharField(max_length=2, choices=STALL_TYPES, default="Type N/A")
+    stall_type= models.CharField(max_length=10, choices=STALL_TYPES, default="Type N/A")
 
     class Meta:
         ordering= ('stall_name',)
@@ -19,11 +20,14 @@ class Stall(models.Model):
     def __str__(self):
         return self.stall_name
 
+    def get_absolute_url(self):
+        return reverse('dashboard')
+
 class Book(models.Model):
-    SCIFI = 'SF'
-    ACTION = 'AC'
-    HORROR = 'HR'
-    ROMANTIC = 'RM'
+    SCIFI = 'SCIFI'
+    ACTION = 'ACTION'
+    HORROR = 'HORROR'
+    ROMANTIC = 'ROMANTIC'
     BOOK_GENRES = (
         (SCIFI, 'SCI-FI'),
         (ACTION, 'ACTION'),
@@ -33,7 +37,7 @@ class Book(models.Model):
     book_name= models.CharField(max_length=100)
     author= models.CharField(max_length=100)
     isbn= models.IntegerField()
-    book_genre= models.CharField(max_length=2, choices=BOOK_GENRES, default="Type N/A")
+    book_genre= models.CharField(max_length=10, choices=BOOK_GENRES, default="Type N/A")
     release_date= models.DateField()
     stalls= models.ManyToManyField(Stall)
 
