@@ -4,6 +4,7 @@ from .views import StallListView, StallDetailView, StallCreateView, StallUpdateV
 
 urlpatterns = [
 path('', views.home, name='boimelaApp-home'),
+path('latest/', views.latest, name='boimelaApp-latest'),
 path('dashboard/', StallListView.as_view(), name='dashboard'),
 path('stall/<int:pk>/', StallDetailView.as_view(), name='stall-detail'),
 path('stall/new/', StallCreateView.as_view(), name='stall-create'),

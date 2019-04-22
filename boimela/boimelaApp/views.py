@@ -8,6 +8,10 @@ from .models import Stall, Book
 def home(request):
     return render(request, 'boimelaApp/index.html')
 
+def latest(request):
+    book= Book.objects.all()
+    return render(request, 'boimelaApp/latestbook.html', {'books':book})
+
 class StallListView(LoginRequiredMixin, ListView):
     model = Stall
     template_name= 'boimelaApp/dash.html'
@@ -15,7 +19,6 @@ class StallListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return Stall.objects.filter(owner=self.request.user)
-
 
 class StallDetailView(LoginRequiredMixin, DetailView):
     model= Stall

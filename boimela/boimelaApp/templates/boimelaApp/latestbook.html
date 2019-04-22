@@ -1,0 +1,16 @@
+{% extends 'boimelaApp/base.html' %}
+{% load static %}
+
+{% block content %}
+<h1>New Books Here!</h1>
+{% if books %}
+{% for book in books %}
+      <p>Book Name: {{ book.book_name }}</p>
+      <p>Book Author: {{ book.author }}</p>
+      <p>Available at:</p>
+      {% for stalls in book.stalls.all %}
+      <p>{{ stalls.stall_name }}</p>
+      {% endfor %}
+{% endfor %}
+{% endif %}
+{% endblock content %}

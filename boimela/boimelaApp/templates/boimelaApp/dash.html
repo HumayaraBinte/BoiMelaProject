@@ -1,0 +1,17 @@
+{% extends 'boimelaApp/base.html' %}
+{% load static %}
+
+{% block content %}
+{% if stalls %}
+<a href="{% url 'stall-create' %}"><h3>Want another stall? Create here!</h3></a>
+<h1>Your stalls are:</h1>
+{% for stall in stalls %}
+<h2><a href="{% url 'stall-detail' stall.id %}">Stall Name: {{ stall.stall_name }}</a></h2>
+<h2>Stall Owner: {{ stall.owner }}</h2>
+<h2>Stall Type: {{ stall.stall_type }}</h2>
+{% endfor%}
+{% else %}
+<h1>You don't have any stalls lmao</h1>
+<a href="{% url 'stall-create' %}"><h3>Want a stall? Create here!</h3></a>
+{% endif %}
+{% endblock content %}
