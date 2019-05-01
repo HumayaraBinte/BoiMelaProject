@@ -12,6 +12,9 @@ def latest(request):
     book= Book.objects.all()
     return render(request, 'boimelaApp/latestbook.html', {'books':book})
 
+def navigation(request):
+    return render(request,'boimelaApp/navigation.html')
+
 class StallListView(LoginRequiredMixin, ListView):
     model = Stall
     template_name= 'boimelaApp/dash.html'
