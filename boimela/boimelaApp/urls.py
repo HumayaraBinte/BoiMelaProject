@@ -9,5 +9,6 @@ path('dashboard/', StallListView.as_view(), name='dashboard'),
 path('stall/<int:pk>/', StallDetailView.as_view(), name='stall-detail'),
 path('stall/new/', StallCreateView.as_view(), name='stall-create'),
 path('stall/<int:pk>/update/', StallUpdateView.as_view(), name='stall-update'),
-path('stall/<int:pk>/delete/', StallDeleteView.as_view(), name='stall-delete')
+path('stall/<int:pk>/delete/', StallDeleteView.as_view(), name='stall-delete'),
+path('navigation/',views.navigation, name='boimelaApp-navigation')
 ]
