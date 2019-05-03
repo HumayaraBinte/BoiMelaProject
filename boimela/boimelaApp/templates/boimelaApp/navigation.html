@@ -2,285 +2,106 @@
 {% load static %}
 
 {% block content %}
-
-<html>   
+<html>
 <style>
-body {
-  font-family: Verdana, sans-serif;
-  margin: 0;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-.row > .column {
-  padding: 20px 20px;
-}
-
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-.column {
-  float: left;
-  width: 25%;
-}
-
-/* The Modal (background) */
-.modal {
-  display: none;
+#overlay {
   position: fixed;
-  z-index: 1;
-  padding-top: 100px;
-  left: 0;
-  top: 0;
+  display: none;
   width: 100%;
   height: 100%;
-  overflow: auto;
-  background-color: black;
-}
-
-/* Modal Content */
-.modal-content {
-  position: relative;
-  background-color: #fefefe;
-  margin: auto;
-  padding: 0;
-  width: 90%;
-  max-width: 1200px;
-}
-
-/* The Close Button */
-.close {
-  color: white;
-  position: absolute;
-  top: 10px;
-  right: 25px;
-  font-size: 35px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: #999;
-  text-decoration: none;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 2;
   cursor: pointer;
 }
 
-.mySlides {
-  display: none;
-}
-
-.cursor {
-  cursor: pointer;
-}
-
-/* Next & previous buttons */
-.prev,
-.next {
-  cursor: pointer;
+#text{
   position: absolute;
   top: 50%;
-  width: auto;
-  padding: 16px;
-  margin-top: -50px;
+  left: 50%;
+  font-size: 50px;
   color: white;
-  font-weight: bold;
-  font-size: 20px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
-  -webkit-user-select: none;
+  transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto;
+  grid-gap: 10px;
+  background-color: #D2B48C;
+  padding: 10px;
 }
 
-/* Position the "next button" to the right */
-.next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
-}
-
-/* On hover, add a black background color with a little bit see-through */
-.prev:hover,
-.next:hover {
-  background-color: rgba(0, 0, 0, 0.8);
-}
-
-.numbertext {
-  color: #f2f2f2;
-  font-size: 12px;
-  padding: 8px 12px;
-  position: absolute;
-  top: 0;
-}
-
-img {
-  margin-bottom: -4px;
-}
-
-.caption-container {
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
   text-align: center;
-  background-color: black;
-  padding: 2px 16px;
-  color: white;
+  padding: 20px 0;
+  font-size: 30px;
+}
+.item1{
+  grid-area: 1 / 1 / 2 / 2; 
+  background-colour: 
+  cursor: pointer;
+}
+.item8 {
+  grid-area: 1 / 3 / 6 / 5;
 }
 
-.demo {
-  opacity: 0.6;
-}
-
-.active,
-.demo:hover {
-  opacity: 1;
-}
-
-img.hover-shadow {
-  transition: 0.3s;
-}
-
-.hover-shadow:hover {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
+.item7{
+  grid-area: 3 / 1 / 4 / 5;
+  }
+.item9{
+  grid-area: 3 / 4 / 4 / 7;
+  }
+ 
 </style>
+</head>
 <body>
 
-<h2 style="text-align:center">Navigation</h2>
-<h3 style="text-align: center"> See your way around Boi Mela</h3>
 
-<div class="row">
-  <div class="column">
-    <img src="https://i.ytimg.com/vi/awOc_4Hamsg/maxresdefault.jpg" style="width:100%" onclick="openModal();currentSlide(1)" class="hover-shadow cursor">
-  </div>
-  <div class="column">
-    <img src=" http://pathakshamabesh.net/wp-content/uploads/2019/03/PSC-Shahbag.jpg" style="width:100%" onclick="openModal();currentSlide(2)" class="hover-shadow cursor">
-  </div>
-  <div class="column">
-    <img src="https://cdn2.atlantamagazine.com/wp-content/uploads/sites/4/2016/11/1116_bookstore_oneuseonly.jpg" style="width:100%" onclick="openModal();currentSlide(3)" class="hover-shadow cursor">
-  </div>
-  <div class="column">
-    <img src="http://www.ejinsight.com/wp-content/uploads/2016/03/1270437_e6df15ae651eca4ad50af6d1931baa2d-692x360.jpg" style="width:100%" onclick="openModal();currentSlide(4)" class="hover-shadow cursor">
-  </div>
-
-
-  <div class="column">
-    <img src="https://i.ytimg.com/vi/awOc_4Hamsg/maxresdefault.jpg" style="width:100%" onclick="openModal();currentSlide(1)" class="hover-shadow cursor">
-  </div>
-  <div class="column">
-    <img src=" http://pathakshamabesh.net/wp-content/uploads/2019/03/PSC-Shahbag.jpg" style="width:100%" onclick="openModal();currentSlide(2)" class="hover-shadow cursor">
-  </div>
-  <div class="column">
-    <img src="https://cdn2.atlantamagazine.com/wp-content/uploads/sites/4/2016/11/1116_bookstore_oneuseonly.jpg" style="width:100%" onclick="openModal();currentSlide(3)" class="hover-shadow cursor">
-  </div>
-  <div class="column">
-    <img src="http://www.ejinsight.com/wp-content/uploads/2016/03/1270437_e6df15ae651eca4ad50af6d1931baa2d-692x360.jpg" style="width:100%" onclick="openModal();currentSlide(4)" class="hover-shadow cursor">
-  </div>
-
-
-  <div class="column">
-    <img src="https://i.ytimg.com/vi/awOc_4Hamsg/maxresdefault.jpg" style="width:100%" onclick="openModal();currentSlide(1)" class="hover-shadow cursor">
-  </div>
-  <div class="column">
-    <img src=" http://pathakshamabesh.net/wp-content/uploads/2019/03/PSC-Shahbag.jpg" style="width:100%" onclick="openModal();currentSlide(2)" class="hover-shadow cursor">
-  </div>
-  <div class="column">
-    <img src="https://cdn2.atlantamagazine.com/wp-content/uploads/sites/4/2016/11/1116_bookstore_oneuseonly.jpg" style="width:100%" onclick="openModal();currentSlide(3)" class="hover-shadow cursor">
-  </div>
-  <div class="column">
-    <img src="http://www.ejinsight.com/wp-content/uploads/2016/03/1270437_e6df15ae651eca4ad50af6d1931baa2d-692x360.jpg" style="width:100%" onclick="openModal();currentSlide(4)" class="hover-shadow cursor">
-  </div>
-
+<div id="overlay" onclick="off()">
+  <div id="text">Stall</div>
 </div>
 
-<div id="myModal" class="modal">
-  <span class="close cursor" onclick="closeModal()">&times;</span>
-  <div class="modal-content">
-
-    <div class="mySlides">
-      <div class="numbertext">1 / 4</div>
-      <img src="https://i.ytimg.com/vi/awOc_4Hamsg/maxresdefault.jpg" style="width:100%">
-    </div>
-
-    <div class="mySlides">
-      <div class="numbertext">2 / 4</div>
-      <img src="http://pathakshamabesh.net/wp-content/uploads/2019/03/PSC-Shahbag.jpg" style="width:100%">
-    </div>
-
-    <div class="mySlides">
-      <div class="numbertext">3 / 4</div>
-      <img src="https://cdn2.atlantamagazine.com/wp-content/uploads/sites/4/2016/11/1116_bookstore_oneuseonly.jpg" style="width:100%">
-    </div>
-    
-    <div class="mySlides">
-      <div class="numbertext">4 / 4</div>
-      <img src="http://www.ejinsight.com/wp-content/uploads/2016/03/1270437_e6df15ae651eca4ad50af6d1931baa2d-692x360.jpg" style="width:100%">
-    </div>
-    
-    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-    <a class="next" onclick="plusSlides(1)">&#10095;</a>
-
-    <div class="caption-container">
-      <p id="caption"></p>
-    </div>
-
-
-    <div class="column">
-      <img class="demo cursor" src="https://i.ytimg.com/vi/awOc_4Hamsg/maxresdefault.jpg" style="width:100%" onclick="currentSlide(1)" alt="Batighor Publishers">
-    </div>
-    <div class="column">
-      <img class="demo cursor" src="http://pathakshamabesh.net/wp-content/uploads/2019/03/PSC-Shahbag.jpg" style="width:100%" onclick="currentSlide(2)" alt="Pathak Shamabesh">
-    </div>
-    <div class="column">
-      <img class="demo cursor" src=" https://cdn2.atlantamagazine.com/wp-content/uploads/sites/4/2016/11/1116_bookstore_oneuseonly.jpg" style="width:100%" onclick="currentSlide(3)" alt="Prothoma Prokashoni">
-    </div>
-    <div class="column">
-      <img class="demo cursor" src="http://www.ejinsight.com/wp-content/uploads/2016/03/1270437_e6df15ae651eca4ad50af6d1931baa2d-692x360.jpg" style="width:100%" onclick="currentSlide(4)" alt="Page One Publishers">
-    </div>
-  </div>
+<div class="grid-container">
+  <div class="item1" onclick="on()"> 1</div>
+  <div class="item2" onclick="on()">2</div>
+  <div class="item3" onclick="on()">3</div>  
+  <div class="item4" onclick="on()">4</div>
+  <div class="item5" onclick="on()">5</div>
+  <div class="item6" onclick="on()">6</div>
+  <div class="item7" > Road </div>
+  <div class="item8" > Road </div>  
+  <div class="item9" > Road </div>
+  
+  <div class="item10" onclick="on()">10</div>
+  <div class="item11" onclick="on()">11</div>
+  <div class="item12" onclick="on()">12</div>
+  <div class="item13" onclick="on()">13</div>
+  <div class="item14" onclick="on()">14</div>
+  <div class="item15" onclick="on()">15</div>
+  <div class="item16" onclick="on()">16</div>
+  <div class="item17" onclick="on()">17</div>
+  <div class="item18" onclick="on()">18</div>
+  <div class="item19" onclick="on()">19</div>
+  
+  
 </div>
 
 <script>
-function openModal() {
-  document.getElementById('myModal').style.display = "block";
+function on() {
+  document.getElementById("overlay").style.display = "block";
 }
 
-function closeModal() {
-  document.getElementById('myModal').style.display = "none";
-}
-
-var slideIndex = 1;
-showSlides(slideIndex);
-
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
-
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
-
-function showSlides(n) {
-  var i;
-  var slides = document.getElementsByClassName("mySlides");
-  var dots = document.getElementsByClassName("demo");
-  var captionText = document.getElementById("caption");
-  if (n > slides.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
-  }
-  for (i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex-1].style.display = "block";
-  dots[slideIndex-1].className += " active";
-  captionText.innerHTML = dots[slideIndex-1].alt;
+function off() {
+  document.getElementById("overlay").style.display = "none";
 }
 </script>
-    
-</body>
 
+</body>
 </html>
 
 {% endblock content %}
