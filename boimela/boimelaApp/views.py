@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Stall, Book
 # Create your views here.
@@ -46,15 +47,24 @@ class StallDeleteView(LoginRequiredMixin, DeleteView):
     model= Stall
     success_url= '/dashboard'
 
-def search(request):
-    if request.method=='POST':
-        srch = request.POST['srh']
+def searchposts(request):
+    if request.method == 'GET':
+        query= request.GET.get('q')
 
-        if srch:
-            match = book.objects.filter(Q(book_name__icontains=srch))
+        submitbutton= request.GET.get('submit')
 
-            if match:
-                return render(request,'boimelaApp/search.html',{'sr':match})
-            else:
-                message.error(request,'no result found')
-    return render(request,'boimelaApp/search.html')
+        if query is not None:
+            lookups= Q(book_name__icontains=query) | Q(author__icontains=query)
+
+            results= Book.objects.filter(lookups).distinct()
+
+            context={'results': results,
+                     'submitbutton': submitbutton}
+
+            return render(request, 'boimelaApp/search.html', context)
+
+        else:
+            return render(request, 'boimelaApp/search.html')
+
+    else:
+        return render(request, 'boimelaApp/search.html')
