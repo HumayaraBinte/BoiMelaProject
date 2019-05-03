@@ -24,6 +24,18 @@ Search <input type="text" name="q" value="{{request.GET.q}}" placeholder="Search
 {{result.author}}
 <br/>
 
+{{result.book_genre}}
+<br/>
+
+{{result.release_date}}
+<br/>
+
+{{result.stalls}}
+<br/>
+
+{{result.isbn}}
+<br/>
+
 {% endfor %}
 {% else %}
 No search results for this query
