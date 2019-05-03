@@ -28,11 +28,26 @@ class Book(models.Model):
     ACTION = 'ACTION'
     HORROR = 'HORROR'
     ROMANTIC = 'ROMANTIC'
+    NONFICTION = 'NONFICTION'
+    FICTION = 'FICTION'
+    CLASSIC = 'CLASSIC'
+    POETRY = 'POETRY'
+    THRILLER = 'THRILLER'
+    MYSTERY = 'MYSTERY'
+    CHILDREN = 'CHILDREN'
+
     BOOK_GENRES = (
         (SCIFI, 'SCI-FI'),
         (ACTION, 'ACTION'),
         (HORROR, 'HORROR'),
         (ROMANTIC, 'ROMANTIC'),
+        (NONFICTION,'NONFICTION'),
+        (FICTION,'FICTION'),
+        (CLASSIC,'CLASSIC'),
+        (POETRY,'POETRY'),
+        (THRILLER,'THRILLER'),
+        (MYSTERY,'MYSTERY'),
+        (CHILDREN,'CHILDREN'),
     )
     book_name= models.CharField(max_length=100)
     author= models.CharField(max_length=100)
