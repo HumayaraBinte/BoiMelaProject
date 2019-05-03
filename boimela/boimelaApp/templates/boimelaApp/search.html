@@ -6,8 +6,7 @@
 <h1>Search Page</h1>
 
 <br/>
-<form action="{% url 'boimelaApp-search' %}" method="GET" value="{{request.GET.q}}">
-Search <input type="text" name="q" value="{{request.GET.q}}" placeholder="Search books"/>
+<form action="{% url 'boimelaApp-search' %}" method="GET" value="{{request.GET.q}}"/><input type="text" name="q" value="{{request.GET.q}}" placeholder="Search books"/>
 <input type="submit" name="submit" value="Search"/>
 </form>
 
@@ -30,10 +29,10 @@ Search <input type="text" name="q" value="{{request.GET.q}}" placeholder="Search
 {{result.release_date}}
 <br/>
 
-{{result.stalls}}
+{{result.isbn}}
 <br/>
 
-{{result.isbn}}
+{{result.stalls.Stall}}
 <br/>
 
 {% endfor %}
