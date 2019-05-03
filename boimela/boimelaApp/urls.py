@@ -11,5 +11,5 @@ path('stall/new/', StallCreateView.as_view(), name='stall-create'),
 path('stall/<int:pk>/update/', StallUpdateView.as_view(), name='stall-update'),
 path('stall/<int:pk>/delete/', StallDeleteView.as_view(), name='stall-delete'),
 path('navigation/',views.navigation, name='boimelaApp-navigation'),
-path('search/',views.search, name='boimelaApp-search')
+path('search/',views.searchposts, name='boimelaApp-search')
 ]
