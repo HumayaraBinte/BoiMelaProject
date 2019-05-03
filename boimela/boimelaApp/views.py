@@ -45,3 +45,16 @@ class StallUpdateView(LoginRequiredMixin, UpdateView):
 class StallDeleteView(LoginRequiredMixin, DeleteView):
     model= Stall
     success_url= '/dashboard'
+
+def search(request):
+    if request.method=='POST':
+        srch = request.POST['srh']
+
+        if srch:
+            match = book.objects.filter(Q(book_name__icontains=srch))
+
+            if match:
+                return render(request,'boimelaApp/search.html',{'sr':match})
+            else:
+                message.error(request,'no result found')
+    return render(request,'boimelaApp/search.html')
