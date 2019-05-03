@@ -39,7 +39,7 @@ input[type=Delete] {
   cursor: pointer;
 }
 
-input[type=Update]:hover {
+input[type=Delete]:hover {
   background-color: #45a049;
 }
 div {
@@ -77,9 +77,5 @@ div {
 </body>
 </html>
 
-<a href="{% url 'stall-update' object.id %}"><h3>Update?</h3></a>
-<a href="{% url 'stall-delete' object.id %}"><h3>Delete?</h3></a>
-<h3>Stall Name: {{ object.stall_name }}</h3>
-<h3>Stall Owner: {{ object.owner }}</h3>
-<h3>Stall Type: {{ object.stall_type }}</h3>
+
 {% endblock content %}
