@@ -92,22 +92,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
   
 <!-- Image of location/map -->
 <div class="w3-container">
-  <img src="/w3images/map.jpg" class="w3-image" style="width:100%">
+  <img src="http://www.boi-mela.com/images/Mela2012.png" class="w3-image" style="width:100%">
 </div>
-
 <!-- End page content -->
 </div>
-<h1>New Books Here!</h1>
-{% if books %}
-{% for book in books %}
-      <p>Book Name: {{ book.book_name }}</p>
-      <p>Book Author: {{ book.author }}</p>
-      <p>Available at:</p>
-      {% for stalls in book.stalls.all %}
-      <p>{{ stalls.stall_name }}</p>
-      {% endfor %}
-{% endfor %}
-{% endif %}
-
 </body>
 {% endblock content %}
