@@ -13,10 +13,15 @@ body{
   margin: auto;
   text-align: center;
   font-family: arial;
+  background-color: rgba(0,0,0,0.5)
+}
+
+.head{
+  color: white;
 }
 
 .detail {
-  color: grey;
+  color: white;
   font-size: 22px;
 }
 
@@ -54,12 +59,6 @@ form.example input[type=submit]:hover {
 </style>
 <body>
 
-<div class="w3-container w3-center w3-padding-36" >
-  <div class="w3-display-middle" style="white-space:nowrap;">
-    <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">SEARCH <span class="w3-hide-small">FOR BOOK DETAILS </span>
-  </div>
-</div>
-
 <br/>
 <form class="example" action="{% url 'boimelaApp-search' %}" method="GET" value="{{request.GET.q}}"/><input type="text" name="q" value="{{request.GET.q}}" placeholder="Search books"/>
 <input type="submit" name="submit" value="Search"/><i class="fa fa-search"></i>
@@ -67,21 +66,25 @@ form.example input[type=submit]:hover {
 
 {% if submitbutton == 'Search' and request.GET.q != '' %}
 {% if results %}
-<h1>Results for <b>{{ request.GET.q }}</b></h1>
+
+<h1 class="head">Results for <b>{{ request.GET.q }}</b></h1>
 <br/><br/>
 
 {% for result in results %}
 
 <div class="card">
-  <h1>Book Details: </h1>
+  <h1 class="head">Book Details: </h1>
   <p class="detail"> Book Name: {{result.book_name}} </p>
   <p class="detail"> Author: {{result.author}} </p>
   <p class="detail"> Genre: {{result.book_genre}} </p>
   <p class="detail"> Release Date: {{result.release_date}}</p>
   <p class="detail"> ISBN: {{result.isbn}} </p>
-  <p class="detail"> Stall: {{result.stalls.Stall}} </p>
+  <p class="detail"> Stall:  </p>
+  {% for stalls in result.stalls.all %}
+      <p class="detail">{{ stalls.stall_name }}</p>
+      {% endfor %}
 
-</div>
+</div><br/><br/>
 
 {% endfor %}
 {% else %}
