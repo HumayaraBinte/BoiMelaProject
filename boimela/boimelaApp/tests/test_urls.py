@@ -14,3 +14,7 @@ class NavigationTest(SimpleTestCase):
 		url = reverse ('boimelaApp-navigation')
 		self.assertEquals(resolve(url).func, navigation)
 
+class LatestTest(SimpleTestCase):
+	def test_list_url_is_resolved(self):
+		url = reverse ('boimelaApp-latest')
+		self.assertEquals(resolve(url).func, latest)
