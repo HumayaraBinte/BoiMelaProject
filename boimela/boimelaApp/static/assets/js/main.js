@@ -1,147 +1,130 @@
-/*
-	Broadcast by TEMPLATED
-	templated.co @templatedco
-	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
-*/
+jQuery(document).ready(function ($) {
 
-(function($) {
+  // Header fixed and Back to top button
+  $(window).scroll(function () {
+    if ($(this).scrollTop() > 100) {
+      $('.back-to-top').fadeIn('slow');
+      $('#header').addClass('header-fixed');
+    } else {
+      $('.back-to-top').fadeOut('slow');
+      $('#header').removeClass('header-fixed');
+    }
+  });
+  $('.back-to-top').click(function () {
+    $('html, body').animate({
+      scrollTop: 0
+    }, 1500, 'easeInOutExpo');
+    return false;
+  });
 
-	skel.breakpoints({
-		xlarge:	'(max-width: 1680px)',
-		large:	'(max-width: 1280px)',
-		medium:	'(max-width: 980px)',
-		small:	'(max-width: 736px)',
-		xsmall:	'(max-width: 480px)'
-	});
+  // Initiate the wowjs
+  new WOW().init();
 
-	$(function() {
+  // Initiate superfish on nav menu
+  $('.nav-menu').superfish({
+    animation: {
+      opacity: 'show'
+    },
+    speed: 400
+  });
 
-		var	$window = $(window),
-			$body = $('body');
+  // Mobile Navigation
+  if ($('#nav-menu-container').length) {
+    var $mobile_nav = $('#nav-menu-container').clone().prop({
+      id: 'mobile-nav'
+    });
+    $mobile_nav.find('> ul').attr({
+      'class': '',
+      'id': ''
+    });
+    $('body').append($mobile_nav);
+    $('body').prepend('<button type="button" id="mobile-nav-toggle"><i class="fa fa-bars"></i></button>');
+    $('body').append('<div id="mobile-body-overly"></div>');
+    $('#mobile-nav').find('.menu-has-children').prepend('<i class="fa fa-chevron-down"></i>');
 
-		// Disable animations/transitions until the page has loaded.
-			$body.addClass('is-loading');
+    $(document).on('click', '.menu-has-children i', function (e) {
+      $(this).next().toggleClass('menu-item-active');
+      $(this).nextAll('ul').eq(0).slideToggle();
+      $(this).toggleClass("fa-chevron-up fa-chevron-down");
+    });
 
-			$window.on('load', function() {
-				window.setTimeout(function() {
-					$body.removeClass('is-loading');
-				}, 100);
-			});
+    $(document).on('click', '#mobile-nav-toggle', function (e) {
+      $('body').toggleClass('mobile-nav-active');
+      $('#mobile-nav-toggle i').toggleClass('fa-times fa-bars');
+      $('#mobile-body-overly').toggle();
+    });
 
-		// Fix: Placeholder polyfill.
-			$('form').placeholder();
+    $(document).click(function (e) {
+      var container = $("#mobile-nav, #mobile-nav-toggle");
+      if (!container.is(e.target) && container.has(e.target).length === 0) {
+        if ($('body').hasClass('mobile-nav-active')) {
+          $('body').removeClass('mobile-nav-active');
+          $('#mobile-nav-toggle i').toggleClass('fa-times fa-bars');
+          $('#mobile-body-overly').fadeOut();
+        }
+      }
+    });
+  } else if ($("#mobile-nav, #mobile-nav-toggle").length) {
+    $("#mobile-nav, #mobile-nav-toggle").hide();
+  }
 
-		// Prioritize "important" elements on medium.
-			skel.on('+medium -medium', function() {
-				$.prioritize(
-					'.important\\28 medium\\29',
-					skel.breakpoint('medium').active
-				);
-			});
+  // Smoth scroll on page hash links
+  $('a[href*="#"]:not([href="#"])').on('click', function () {
+    if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
 
-		// Menu.
-			$('#menu')
-				.append('<a href="#menu" class="close"></a>')
-				.appendTo($body)
-				.panel({
-					delay: 500,
-					hideOnClick: true,
-					hideOnSwipe: true,
-					resetScroll: true,
-					resetForms: true,
-					side: 'right'
-				});
+      var target = $(this.hash);
+      if (target.length) {
+        var top_space = 0;
 
-		// Banner.
-			var $banner = $('#banner');
+        if ($('#header').length) {
+          top_space = $('#header').outerHeight();
 
-			if ($banner.length > 0) {
+          if (!$('#header').hasClass('header-fixed')) {
+            top_space = top_space - 20;
+          }
+        }
 
-				// IE fix.
-					if (skel.vars.IEVersion < 12) {
+        $('html, body').animate({
+          scrollTop: target.offset().top - top_space
+        }, 1500, 'easeInOutExpo');
 
-						$window.on('resize', function() {
+        if ($(this).parents('.nav-menu').length) {
+          $('.nav-menu .menu-active').removeClass('menu-active');
+          $(this).closest('li').addClass('menu-active');
+        }
 
-							var wh = $window.height() * 0.60,
-								bh = $banner.height();
+        if ($('body').hasClass('mobile-nav-active')) {
+          $('body').removeClass('mobile-nav-active');
+          $('#mobile-nav-toggle i').toggleClass('fa-times fa-bars');
+          $('#mobile-body-overly').fadeOut();
+        }
+        return false;
+      }
+    }
+  });
 
-							$banner.css('height', 'auto');
+  // Porfolio filter
+  $("#portfolio-flters li").click(function () {
+    $("#portfolio-flters li").removeClass('filter-active');
+    $(this).addClass('filter-active');
 
-							window.setTimeout(function() {
+    var selectedFilter = $(this).data("filter");
+    $("#portfolio-wrapper").fadeTo(100, 0);
 
-								if (bh < wh)
-									$banner.css('height', wh + 'px');
+    $(".portfolio-item").fadeOut().css('transform', 'scale(0)');
 
-							}, 0);
+    setTimeout(function () {
+      $(selectedFilter).fadeIn(100).css('transform', 'scale(1)');
+      $("#portfolio-wrapper").fadeTo(300, 1);
+    }, 300);
+  });
 
-						});
+  // jQuery counterUp
+  $('[data-toggle="counter-up"]').counterUp({
+    delay: 10,
+    time: 1000
+  });
 
-						$window.on('load', function() {
-							$window.triggerHandler('resize');
-						});
+  // custom code
 
-					}
-
-				// Video check.
-					var video = $banner.data('video');
-
-					if (video)
-						$window.on('load.banner', function() {
-
-							// Disable banner load event (so it doesn't fire again).
-								$window.off('load.banner');
-
-							// Append video if supported.
-								if (!skel.vars.mobile
-								&&	!skel.breakpoint('large').active
-								&&	skel.vars.IEVersion > 9)
-									$banner.append('<video autoplay loop><source src="' + video + '.mp4" type="video/mp4" /><source src="' + video + '.webm" type="video/webm" /></video>');
-
-						});
-
-				// More button.
-					$banner.find('.more')
-						.addClass('scrolly');
-
-			}
-
-		// Tabbed Boxes
-
-			$('.flex-tabs').each( function() {
-
-				var t 		= jQuery(this),
-					tab 	= t.find('.tab-list li a'),
-					tabs 	= t.find('.tab');
-
-				tab.click(function(e) {
-
-					var x = jQuery(this),
-						y = x.data('tab');
-
-					// Set Classes on Tabs
-						tab.removeClass('active');
-						x.addClass('active');
-
-					// Show/Hide Tab Content
-						tabs.removeClass('active');
-						t.find('.' + y).addClass('active');
-
-					e.preventDefault();
-
-				});
-
-			});
-
-		// Scrolly.
-			if ( $( ".scrolly" ).length ) {
-
-				var $height = $('#header').height();
-
-				$('.scrolly').scrolly({
-					offset: $height
-				});
-			}
-
-	});
-
-})(jQuery);
+});
