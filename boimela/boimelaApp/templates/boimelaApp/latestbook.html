@@ -2,6 +2,101 @@
 {% load static %}
 
 {% block content %}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+</style>
+<body class="w3-light-grey w3-content" style="max-width:1600px">
+<!-- Page content -->
+<div class="w3-content w3-padding" style="max-width:1564px">
+
+  <!-- Project Section -->
+  <div class="w3-container w3-padding-32" id="projects">
+    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Books In Stock</h3>
+  </div>
+
+  <div class="w3-row-padding">
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-display-container">
+        <div class="w3-display-topleft w3-black w3-padding">They came to baghdad</div>
+        <img src="http://cherryblossom-books.com/media/catalog/product/cache/1/image/1200x/9df78eab33525d08d6e5fb8d27136e95/r/e/rendez-vous-a-bagdad-532583.jpg" alt="House" style="width:100%">
+      </div>
+    </div>
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-display-container">
+        <div class="w3-display-topleft w3-black w3-padding">Tukunjil</div>
+        <img src="https://lh3.googleusercontent.com/v1iX7wv33OE3TcqsxaiC2FBMMjVsmm3_pHOdrsVvlt5s4EDph-hi4wq3p-fVYjCWQ3E" alt="House" style="width:100%">
+      </div>
+    </div>
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-display-container">
+        <div class="w3-display-topleft w3-black w3-padding">Confess</div>
+        <img src="https://images-na.ssl-images-amazon.com/images/I/81-uHo1jE6L.jpg" alt="House" style="width:100%">
+      </div>
+    </div>
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-display-container">
+        <div class="w3-display-topleft w3-black w3-padding">Rasha</div>
+        <img src="http://www.amarbooks.com/thumbs/1489221462.jpg" alt="House" style="width:100%">
+      </div>
+    </div>
+  </div>
+
+  <div class="w3-row-padding">
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-display-container">
+        <div class="w3-display-topleft w3-black w3-padding">The innocent man</div>
+        <img src="https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9780/4402/9780440243830.jpg" alt="House" style="width:99%">
+      </div>
+    </div>
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-display-container">
+        <div class="w3-display-topleft w3-black w3-padding">The Notebook</div>
+        <img src="https://images-na.ssl-images-amazon.com/images/I/51gwFLbBumL._SY445_.jpg" alt="House" style="width:99%">
+      </div>
+    </div>
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-display-container">
+        <div class="w3-display-topleft w3-black w3-padding">The ABC murders</div>
+        <img src="https://images-na.ssl-images-amazon.com/images/I/51ZpH3nw8ZL._SX299_BO1,204,203,200_.jpg" alt="House" style="width:99%">
+      </div>
+    </div>
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-display-container">
+        <div class="w3-display-topleft w3-black w3-padding">The ministry of Utmost Happiness</div>
+        <img src="https://i1.wp.com/www.vervemagazine.in/wp-content/uploads/2014/01/mini.jpg" alt="House" style="width:99%">
+      </div>
+    </div>
+  </div>
+
+ 
+  
+  <!-- Contact Section -->
+  <div class="w3-container w3-padding-32" id="contact">
+    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Contact</h3>
+    <p>New Books you want to order.</p>
+    <form action="/action_page.php" target="_blank">
+      <input class="w3-input w3-border" type="text" placeholder="Name" required name="Name">
+      <input class="w3-input w3-section w3-border" type="text" placeholder="Email" required name="Email">
+      <input class="w3-input w3-section w3-border" type="text" placeholder="BookName" required name="Book name">
+      <input class="w3-input w3-section w3-border" type="text" placeholder="AuthorName" required name="Author Name">
+      <button class="w3-button w3-black w3-section" type="submit">
+        <i class="fa fa-paper-plane"></i> SEND MESSAGE
+      </button>
+    </form>
+  </div>
+  
+<!-- Image of location/map -->
+<div class="w3-container">
+  <img src="/w3images/map.jpg" class="w3-image" style="width:100%">
+</div>
+
+<!-- End page content -->
+</div>
 <h1>New Books Here!</h1>
 {% if books %}
 {% for book in books %}
@@ -13,4 +108,6 @@
       {% endfor %}
 {% endfor %}
 {% endif %}
+
+</body>
 {% endblock content %}
