@@ -2,16 +2,52 @@
 {% load static %}
 
 {% block content %}
-{% if stalls %}
+<html>
+<head>
+<style>
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
+
+
+.card button {
+  border: none;
+  outline: 0;
+  padding: 12px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 50%;
+  font-size: 18px;
+}
+
+.card button:hover {
+  opacity: 0.7;
+}
+</style>
+</head>
+<body>
+{% if stalls %}	
 <a href="{% url 'stall-create' %}"><h3>Want another stall? Create here!</h3></a>
-<h1>Your stalls are:</h1>
 {% for stall in stalls %}
-<h2><a href="{% url 'stall-detail' stall.id %}">Stall Name: {{ stall.stall_name }}</a></h2>
-<h2>Stall Owner: {{ stall.owner }}</h2>
-<h2>Stall Type: {{ stall.stall_type }}</h2>
-{% endfor%}
+<div class="card">
+  <img src="https://blogs.lse.ac.uk/lsereviewofbooks/files/2016/02/Books-for-Survey.jpg" alt="books" style="width:50%">
+  <a href="{% url 'stall-create' %}"><h3>Want a stall? Create here!</h3></a>
+  <h1><a href="{% url 'stall-detail' stall.id %}">Stall Name: {{ stall.stall_name }}</h1>
+    <h1>Stall Owner: {{ stall.owner }}</h1>
+      <h1>Stall Type: {{ stall.stall_type }}</h1>
+      {% endfor%}
 {% else %}
 <h1>You don't have any stalls</h1>
-<a href="{% url 'stall-create' %}"><h3>Want a stall? Create here!</h3></a>
-{% endif %}
+ {% endif %}
+</div>
+
+</body>
+</html>
+
 {% endblock content %}
