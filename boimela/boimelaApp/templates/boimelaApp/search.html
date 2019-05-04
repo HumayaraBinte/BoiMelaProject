@@ -3,12 +3,30 @@
 
 {% block content %}
 
+<style>
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
+
+.price {
+  color: grey;
+  font-size: 22px;
+}
+
+</style>
+<body>
+
 <h1>Search Page</h1>
 
 <br/>
 <form action="{% url 'boimelaApp-search' %}" method="GET" value="{{request.GET.q}}"/><input type="text" name="q" value="{{request.GET.q}}" placeholder="Search books"/>
 <input type="submit" name="submit" value="Search"/>
 </form>
+
 
 {% if submitbutton == 'Search' and request.GET.q != '' %}
 {% if results %}
@@ -17,23 +35,17 @@
 
 {% for result in results %}
 
-{{result.book_name}}
-<br/>
+<div class="card">
+  <img src=" https://elgarblog.files.wordpress.com/2014/01/education-books.jpg" alt="Book" style="width:100%">
+  <h1>Book Details: </h1>
+  <p class="price"> Book Name: {{result.book_name}} </p>
+  <p class="price"> Author: {{result.author}} </p>
+  <p class="price"> Genre: {{result.book_genre}} </p>
+  <p class="price"> Release Date: {{result.release_date}}</p>
+  <p class="price"> ISBN: {{result.isbn}} </p>
+  <p class="price"> Stall: {{result.stalls.Stall}} </p>
 
-{{result.author}}
-<br/>
-
-{{result.book_genre}}
-<br/>
-
-{{result.release_date}}
-<br/>
-
-{{result.isbn}}
-<br/>
-
-{{result.stalls.Stall}}
-<br/>
+</div>
 
 {% endfor %}
 {% else %}
@@ -41,5 +53,5 @@ No search results for this query
 {% endif %}
 {% endif %}
 
-
+</body>
 {% endblock content %}
