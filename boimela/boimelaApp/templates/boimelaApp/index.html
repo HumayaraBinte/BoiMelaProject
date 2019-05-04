@@ -2,5 +2,93 @@
 {% load static %}
 
 {% block content %}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
+.w3-row-padding img {margin-bottom: 12px}
+/* Set the width of the sidebar to 120px */
+.w3-sidebar {width: 120px;background: #222;}
+/* Add a left margin to the "page content" that matches the width of the sidebar (120px) */
+#main {margin-left: 120px}
+/* Remove margins from "page content" on small screens */
+@media only screen and (max-width: 600px) {#main {margin-left: 0}}
+</style>
+<body class="w3-black">
+<head>
+<style>
+div.gallery {
+  margin: 5px;
+  border: 1px solid #ccc;
+  float: center;
+  width: 1100px;
+}
+
+div.gallery:hover {
+  border: 2px solid #777;
+}
+
+div.gallery img {
+  width: 100%;
+  height:auto;
+}
+
+div.desc {
+  padding: 50px;
+  text-align: center;
+}
+</style>
+</head>
+<body>
+
+<div class="gallery">
+  <a target="_blank" href="img_5terre.jpg">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Shaheed_Minar.JPG" alt="Cinque Terre" width="600" height="400">
+  </a>
+  <div class="desc">
+  	<h1>Ekushey Boimela. The festival of books. Bringing people together and helping people to gather knowledge.</h1>
+  </div>
+</div>
+
+<section id="services">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading text-uppercase">Services</h2>
+          <h3 class="section-subheading text-muted">What we are offering</h3>
+        </div>
+      </div>
+      <div class="row text-center">
+        <div class="col-md-4">
+           <span class="fa-stack fa-4x">
+            <i class="fas fa-circle fa-stack-2x text-primary"></i>
+            <i class="fas fa-book fa-stack-1x fa-inverse"></i>
+          </span>
+          <h4 class="service-heading">Latest Book Releases</h4>
+          <p class="text-muted">In this section, you will get to see the latest books that has arrived in the specific stalls. This is one of our biggest services as not only the reader gets to see what we have in stalk. They also get to see the availablity and the dates for their arrivals</p>
+        </div>
+        <div class="col-md-4">
+          <span class="fa-stack fa-4x">
+            <i class="fas fa-circle fa-stack-2x text-primary"></i>
+            <i class="fas fa-route fa-stack-1x fa-inverse"></i>
+          </span>
+          <h4 class="service-heading">Navigation</h4>
+          <p class="text-muted">Using our map, you will be able to find out all of your desired book stalls and this will help you save time and enjoy the events</p>
+        </div>
+        <div class="col-md-4">
+          <span class="fa-stack fa-4x">
+            <i class="fas fa-circle fa-stack-2x text-primary"></i>
+            <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
+          </span>
+          <h4 class="service-heading">Web Security</h4>
+          <p class="text-muted">Our policy is to strictly maintain the privacy of our users. Any information that is shared will be completely confidential</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
 
 {% endblock content %}
