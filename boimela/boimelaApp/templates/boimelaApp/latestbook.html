@@ -10,6 +10,43 @@
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 </style>
+
+<b><h2><p style="text-align:center">New Books here</h2></b>
+
+<b><table border ='1' align ="center"></b>
+  <tr>
+    <th>Book Name</th>
+    <th>Author Name</th>
+    <th>Available Stall</th>
+  </tr>
+  <tr>
+   <td>
+{% if books %}
+{% for book in books %}
+      <p>{{ book.book_name }}</p>
+  {% endfor %}
+{% endif %}
+</td>
+    <td>
+    	{% if books %}
+       {% for book in books %}
+   <p>{{ book.author }}</p>
+{% endfor %}
+{% endif %}
+</td>
+    <td>
+     {% if books %}
+       {% for book in books %}
+       <p></p>
+      {% for stalls in book.stalls.all %}
+      <p>{{ stalls.stall_name }}</p>
+      {% endfor %}
+      {% endfor %}
+{% endif %}
+</td>
+  </tr>
+  
+</table>
 <body class="w3-light-grey w3-content" style="max-width:1600px">
 <!-- Page content -->
 <div class="w3-content w3-padding" style="max-width:1564px">
