@@ -4,6 +4,9 @@
 {% block content %}
 
 <style>
+body{
+	background-image: url("https://news.lib.berkeley.edu/sites/default/files/inline-images/generic%20books%20pixabay_0.jpg");
+}
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   max-width: 300px;
@@ -12,21 +15,55 @@
   font-family: arial;
 }
 
-.price {
+.detail {
   color: grey;
   font-size: 22px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+form.example input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
+  border-radius: 12px;
+}
+
+form.example input[type=submit] {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: linear-gradient(to bottom, #33cccc 0%, #ff0000 100%);
+  border-radius: 12px;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+}
+
+form.example input[type=submit]:hover {
+  background: white;
 }
 
 </style>
 <body>
 
-<h1>Search Page</h1>
+<div class="w3-container w3-center w3-padding-36" >
+  <div class="w3-display-middle" style="white-space:nowrap;">
+    <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">SEARCH <span class="w3-hide-small">FOR BOOK DETAILS </span>
+  </div>
+</div>
 
 <br/>
-<form action="{% url 'boimelaApp-search' %}" method="GET" value="{{request.GET.q}}"/><input type="text" name="q" value="{{request.GET.q}}" placeholder="Search books"/>
-<input type="submit" name="submit" value="Search"/>
+<form class="example" action="{% url 'boimelaApp-search' %}" method="GET" value="{{request.GET.q}}"/><input type="text" name="q" value="{{request.GET.q}}" placeholder="Search books"/>
+<input type="submit" name="submit" value="Search"/><i class="fa fa-search"></i>
 </form>
-
 
 {% if submitbutton == 'Search' and request.GET.q != '' %}
 {% if results %}
@@ -36,14 +73,13 @@
 {% for result in results %}
 
 <div class="card">
-  <img src=" https://elgarblog.files.wordpress.com/2014/01/education-books.jpg" alt="Book" style="width:100%">
   <h1>Book Details: </h1>
-  <p class="price"> Book Name: {{result.book_name}} </p>
-  <p class="price"> Author: {{result.author}} </p>
-  <p class="price"> Genre: {{result.book_genre}} </p>
-  <p class="price"> Release Date: {{result.release_date}}</p>
-  <p class="price"> ISBN: {{result.isbn}} </p>
-  <p class="price"> Stall: {{result.stalls.Stall}} </p>
+  <p class="detail"> Book Name: {{result.book_name}} </p>
+  <p class="detail"> Author: {{result.author}} </p>
+  <p class="detail"> Genre: {{result.book_genre}} </p>
+  <p class="detail"> Release Date: {{result.release_date}}</p>
+  <p class="detail"> ISBN: {{result.isbn}} </p>
+  <p class="detail"> Stall: {{result.stalls.Stall}} </p>
 
 </div>
 
