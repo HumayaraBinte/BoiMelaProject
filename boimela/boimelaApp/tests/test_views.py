@@ -1,0 +1,20 @@
+views: 
+from django.test import TestCase, Client
+from django.urls import reverse
+from boimelaApp.models import Stall,Book
+import json
+
+class TestViews(TestCase):
+
+	def setUp(self):
+		self.client= Client()
+		self.home_url = reverse('boimelaApp-home')
+		self.latest_url = reverse('boimelaApp-latest')
+		self.navigation_url = reverse ('boimelaApp-navigation')
+
+	def test_home_GET(self):
+
+		response= self.client.get(self.home_url)
+
+		self.assertEquals(response.status_code, 200)
+		self.assertTemplateUsed (response, 'boimelaApp/index.html')
