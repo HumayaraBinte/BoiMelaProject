@@ -1,4 +1,3 @@
-views: 
 from django.test import TestCase, Client
 from django.urls import reverse
 from boimelaApp.models import Stall,Book
