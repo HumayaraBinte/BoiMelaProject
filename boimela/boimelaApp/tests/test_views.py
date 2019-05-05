@@ -27,5 +27,9 @@ class TestViews(TestCase):
 		self.assertTemplateUsed (response, 'boimelaApp/latestbook.html')
 
 
+	def test_navigation_GET(self):
 
+		response= self.client.get(self.navigation_url)
 
+		self.assertEquals(response.status_code, 200)
+		self.assertTemplateUsed (response, 'boimelaApp/navigation.html')
