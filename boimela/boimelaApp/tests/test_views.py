@@ -18,3 +18,14 @@ class TestViews(TestCase):
 
 		self.assertEquals(response.status_code, 200)
 		self.assertTemplateUsed (response, 'boimelaApp/index.html')
+
+	def test_latest_GET(self):
+
+		response= self.client.get(self.latest_url)
+
+		self.assertEquals(response.status_code, 200)
+		self.assertTemplateUsed (response, 'boimelaApp/latestbook.html')
+
+
+
+
